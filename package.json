@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-isonaj",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/isonaj/vuepress-theme-isonaj/issues"
   },
-  "homepage": "https://github.com/isonaj/vuepress-theme-isonaj#readme"
+  "homepage": "https://github.com/isonaj/vuepress-theme-isonaj#readme",
+  "dependencies": {
+    "@vuepress/plugin-blog": "^1.2.4"
+  }
 }
