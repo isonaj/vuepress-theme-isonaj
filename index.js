@@ -17,7 +17,7 @@ module.exports = (options, ctx) => {
             {
               id: 'draft',
               dirname: '_drafts',
-              path: '/',
+              path: '/drafts',
               itemPermalink: '/:slug'
             },
           ]
