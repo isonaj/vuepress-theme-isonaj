@@ -6,9 +6,16 @@
     <p>{{$site.theme }}</p>
     <p>{{$site.themeConfig.disqus_shortname }}</p>
 
-    <ClientOnly v-if="$site.themeConfig.disqus_shortname">
-      <Disqus :shortname="$site.themeConfig.disqus_shortname" />
-    </ClientOnly>
+  <p>$site.themeConfig.disqus_shortname</p>
+    <div class="disqus">
+      <ClientOnly v-if="$site.themeConfig.disqus_shortname">
+        <Disqus 
+          :shortname="$site.themeConfig.disqus_shortname" 
+          :title="$page.title"
+          :identifier="disqusIdentifier" 
+        />
+      </ClientOnly>
+    </div>
   </div>
 </template>
 
@@ -19,6 +26,11 @@
     name: 'Post',
     components: {
       Disqus
+    },
+    computed: {
+      disqusIdentifier () {
+        return this.$page.frontmatter.disqus || this.$page.path
+      }
     }
   }
 </script>
