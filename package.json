@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-isonaj",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,14 +17,13 @@
   },
   "homepage": "https://github.com/isonaj/vuepress-theme-isonaj#readme",
   "dependencies": {
-    "@vuepress/plugin-blog": "^1.2.4"
-  },
-  "devDependencies": {
-    "@vuepress/plugin-google-analytics": "^1.0.3",
+    "@vuepress/plugin-blog": "^1.2.4",
     "@vuepress/plugin-nprogress": "^1.0.3",
     "@vuepress/plugin-search": "^1.0.3",
     "vuepress-plugin-container": "^2.0.2",
+    "vuepress-plugin-disqus": "^0.1.1",
     "vuepress-plugin-feed": "^0.1.6",
     "vuepress-plugin-reading-time": "^0.1.1"
-  }
+  },
+  "devDependencies": {}
 }
