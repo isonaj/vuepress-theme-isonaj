@@ -18,7 +18,7 @@ module.exports = (options, ctx) => {
             {
               id: 'draft',
               dirname: '_drafts',
-              path: '/drafts',
+              path: '/drafts/',
               itemPermalink: '/:slug',
               layout: 'PostList'
             },
@@ -31,6 +31,7 @@ module.exports = (options, ctx) => {
       ['container', { type: 'tip' }],
       ['container', { type: 'warning' }],
       ['container', { type: 'danger' }],
+      ['feed', options.feed],
     ]
   };  
 }
