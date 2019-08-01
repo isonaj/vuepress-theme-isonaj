@@ -3,17 +3,15 @@
     <Content />
 
     <p>Test</p>
-    <p>{{$site.theme }}</p>
-    <p>{{$site.themeConfig.disqus_shortname }}</p>
+    <p>{{ $site.themeConfig.disqus_shortname }}</p>
+    <p>{{ $themeConfig.disqus_shortname }}</p>
 
-  <p>$site.themeConfig.disqus_shortname</p>
+    <p>{{ disqusIdentifier }}</p>
+    <p>{{ disqusUrl }}</p>
+
     <div class="disqus">
-      <ClientOnly v-if="$site.themeConfig.disqus_shortname">
-        <Disqus 
-          :shortname="$site.themeConfig.disqus_shortname" 
-          :title="$page.title"
-          :identifier="disqusIdentifier" 
-        />
+      <ClientOnly>
+        <Disqus class="mt-30" :shortname="$themeConfig.disqus_shortname" />
       </ClientOnly>
     </div>
   </div>
@@ -21,16 +19,20 @@
 
 <script>
   import Disqus from 'vuepress-plugin-disqus';
+  import VueDisqus from 'vue-disqus';
   
   export default {
     name: 'Post',
     components: {
-      Disqus
+      Disqus, VueDisqus
     },
     computed: {
       disqusIdentifier () {
         return this.$page.frontmatter.disqus || this.$page.path
-      }
+      },
+      disqusUrl () {
+        return this.$site.themeConfig.domain + this.$page.path
+      },
     }
   }
 </script>
