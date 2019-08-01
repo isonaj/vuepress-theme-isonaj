@@ -28,6 +28,7 @@ module.exports = (options, ctx) => {
       ['vuepress-plugin-reading-time'],
       ['@vuepress/search'],
       ['@vuepress/plugin-nprogress'],
+      ['vuepress-plugin-disqus'],
       ['container', { type: 'tip' }],
       ['container', { type: 'warning' }],
       ['container', { type: 'danger' }],
