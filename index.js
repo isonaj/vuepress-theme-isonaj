@@ -11,16 +11,18 @@ module.exports = (options, ctx) => {
               path: '/',
               itemPermalink: '/:slug',
               pagination: {
-                lengthPerPage: 20
+                lengthPerPage: 10
               },
-              layout: 'PostList'
+              layout: 'PostList',
+              itemLayout: 'Post'
             },
             {
               id: 'draft',
               dirname: '_drafts',
               path: '/drafts/',
               itemPermalink: '/:slug',
-              layout: 'PostList'
+              layout: 'PostList',
+              itemLayout: 'Draft'
             },
           ]
         }
