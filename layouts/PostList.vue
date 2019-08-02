@@ -11,7 +11,7 @@
               <header class="post-card-header">
                 <span class="post-card-tags">
                   <span v-for="tag in post.frontmatter.tags" :key="tag.key">{{ tag }} | </span> 
-                  <time :datetime="post.frontmatter.date" itemprop="datePublished">
+                  <time v-if="post.frontmatter.date" :datetime="post.frontmatter.date" itemprop="datePublished">
                     {{ new Date(post.frontmatter.date.trim()).toDateString() }}
                   </time>
                 </span>
