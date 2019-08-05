@@ -52,6 +52,12 @@
   flex-grow: 1;
   -ms-flex-positive: 1;
 }
+
+.markdown-body>:first-child {
+  margin-top: 0;
+  font-size: 1.25em;
+  line-height: 1.5em;
+}
 /*
 @media (max-width: 1170px)
 .post-full-content {

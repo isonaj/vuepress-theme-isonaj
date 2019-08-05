@@ -52,6 +52,32 @@
 
 
 <style>
+
+.post-card, .post-feed {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+}
+
+.post-card {
+  overflow: hidden;
+  flex-direction: column;
+  min-height: 300px;
+  margin: 0 20px 40px;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+  border-radius: 5px;
+  background: 50%/cover #fff;
+  -webkit-box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+  box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
+  -webkit-box-direction: normal;
+  -webkit-box-flex: 1;
+  -webkit-box-orient: vertical;
+  -ms-flex: 1 1 300px;
+  flex: 1 1 300px;
+  -ms-flex-direction: column;
+}
+
 .home-template .post-feed .post-card:nth-child(6n+1):not(.no-image) {
   flex-direction: row;
   -webkit-box-direction: normal;
@@ -61,30 +87,5 @@
   flex: 1 1 100%;
   -ms-flex-direction: row;
 }
-
-.post-card {
-    overflow: hidden;
-    flex-direction: column;
-    min-height: 300px;
-    margin: 0 20px 40px;
-    -webkit-transition: all .5s ease;
-    transition: all .5s ease;
-    border-radius: 5px;
-    background: 50%/cover #fff;
-    -webkit-box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03);
-    -webkit-box-direction: normal;
-    -webkit-box-flex: 1;
-    -webkit-box-orient: vertical;
-    -ms-flex: 1 1 300px;
-    flex: 1 1 300px;
-    -ms-flex-direction: column;
-}
-.post-card, .post-feed {
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: flex;
-}
-
 
 </style>
