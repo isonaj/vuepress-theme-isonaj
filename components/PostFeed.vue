@@ -1,18 +1,21 @@
 <template>
-  <div class="post-feed">
-    <PostCard v-for="post in $pagination.pages" :post="post" />
-  </div>
+  <main id="site-main" class="site-main outer">
+    <div class="inner">
+      <div class="post-feed">
+        <Card v-for="(post, index) in $pagination.pages" :post="post" :key="index" />
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
-import PostCard from '../components/PostCard';
+import Card from '../components/Card';
 
 export default {
-  components: { PostCard },
-  computed: {
-    //summary(): { return post.frontmatter.summary || post.summary }
-    //    v-for="post in $pagination.pages" :key="post.key"
-
-  }
+  components: { Card },
 }
 </script>
+
+<style lang="scss">
+  @import '../styles/post-feed';
+</style>
