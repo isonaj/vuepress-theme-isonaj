@@ -47,6 +47,11 @@ export default {
       this.$el.parentNode.className = `error-template`;
     }
   },
+  computed: {
+    blog() {
+      return this.$site;
+    }
+  }
 };
 </script>
 

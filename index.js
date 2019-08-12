@@ -35,6 +35,7 @@ module.exports = (options, ctx) => {
       ['container', { type: 'warning' }],
       ['container', { type: 'danger' }],
       ['feed', options.feed],
+      ['sitemap', { hostname: options.sitemap }]
     ]
   };  
 }
