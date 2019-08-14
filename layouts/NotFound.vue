@@ -33,12 +33,6 @@ import Error from '../components/Error'
 export default {
   data() {
     return {
-      header: {
-        showCover: false,
-        coverImage: null,
-        title: null,
-        description: null
-      }
     };
   },
   components: { SiteHeader, Card, Error },
@@ -48,8 +42,24 @@ export default {
     }
   },
   computed: {
+    header() {
+      return {
+        showCover: false,
+        coverImage: null,
+        title: null,
+        description: null,
+        logo: this.$themeConfig.logo,
+      }
+    },
     blog() {
-      return this.$site;
+      return {
+        title: this.$site,
+        base: this.$site.base,
+        logo: this.$themeConfig.logo
+      }
+    },
+    posts() {
+      return this.$pages;
     }
   }
 };

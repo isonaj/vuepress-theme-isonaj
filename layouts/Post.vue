@@ -6,7 +6,7 @@
 
     <main id="site-main" class="site-main outer">
       <div class="inner">
-        <article class="post-full" :class="{ 'no-image': !image }">
+        <article class="post-full" :class="{ 'no-image': !blog.image }">
           <header class="post-full-header">
             <section class="post-full-meta">
               <time class="post-full-meta-date" :datetime="datetime">{{ localeDate }}</time>
@@ -16,7 +16,7 @@
             <h1 class="post-full-title">{{ $page.title }}</h1>
           </header>
 
-          <figure v-if="image" class="post-full-image" :style="backgroundImage"></figure>
+          <figure v-if="blog.image" class="post-full-image" :style="backgroundImage"></figure>
 
           <section class="post-full-content">
             <Content class="post-content" />
@@ -41,23 +41,22 @@
   export default {
     components: { Navigation, Header, Footer },
     computed: {
-      blog () {
-        return this.$page;
+      blog() {
+        return {
+          title: this.$page.title,
+          image: this.$page.frontmatter.image,
+        }
       },
-      header () {
+      header() {
         return {
           showCover: false,
-          logo: this.$site.logo,
-          coverImage: this.$themeConfig.cover,
+          logo: this.$themeConfig.logo,
+          coverImage: null,
           title: this.$site.title,
           description: this.$site.description
         }
       },
-
-      image () {
-        return this.$page.frontmatter.image;
-      },
-
+        
       datetime () {
         return new Date(this.$page.frontmatter.date).toISOString()
       },
@@ -76,7 +75,7 @@
 
       backgroundImage () {
         return {
-          'background-image': `url(${this.$withBase(this.image)})`
+          'background-image': `url(${this.$withBase(this.blog.image)})`
         }
       }
     }

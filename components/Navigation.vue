@@ -39,7 +39,7 @@
       blog () { 
         return {
           title: this.$page.title,
-          logo: this.$page.frontmatter.image
+          logo: this.$themeConfig.logo
         }
       }
     }
