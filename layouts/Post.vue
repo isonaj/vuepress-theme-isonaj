@@ -1,165 +1,67 @@
 <template>
-  <div class="site-wrapper">
-    <Header :header="header">
-      <Navigation slot="header"></Navigation>
-    </Header>
-
-    <main id="site-main" class="site-main outer">
-      <div class="inner">
-        <article class="post-full" :class="{ 'no-image': !blog.image }">
-          <header class="post-full-header">
-            <section class="post-full-meta">
-              <time class="post-full-meta-date" :datetime="datetime">{{ localeDate }}</time>
-              <span class="date-divider" v-if="primaryTag">/</span>
-              <a :href="$withBase(`/tags/${primaryTag}`)" v-if="primaryTag">{{ primaryTag }}</a>
-            </section>
-            <h1 class="post-full-title">{{ $page.title }}</h1>
-          </header>
-
-          <figure v-if="blog.image" class="post-full-image" :style="backgroundImage"></figure>
-
-          <section class="post-full-content">
-            <Content class="post-content" />
+  <main id="site-main" class="site-main outer">
+    <div class="inner">
+      <article class="post-full" :class="{ 'no-image': !$frontmatter.image }">
+        <header class="post-full-header">
+          <section class="post-full-meta">
+            <time class="post-full-meta-date" :datetime="datetime">{{ localeDate }}</time>
+            <span v-for="tag in tags">
+              <span class="date-divider">/</span>
+              <a :href="$withBase(`/tags/${tag}`)">{{ tag }}</a>
+            </span>
           </section>
-          <section v-if="$themeConfig.disqus" class="post-full-comments">
-            <ClientOnly>
-              <disqus :shortname="$themeConfig.disqus" />
-            </ClientOnly>
-          </section>
-        </article>
-      </div>
-    </main>
-    <Footer />
-  </div>
+          <h1 class="post-full-title">{{ $frontmatter.title }}</h1>
+        </header>
+
+        <figure v-if="$frontmatter.image" class="post-full-image" :style="backgroundImage"></figure>
+
+        <section class="post-full-content">
+          <Content class="post-content" />
+        </section>
+
+        <section v-if="$themeConfig.disqus" class="post-full-comments">
+          <disqus :shortname="$themeConfig.disqus" :url="$page.url" />
+        </section>
+      </article>
+    </div>
+  </main>
 </template>
 
 <script>
-  import Navigation from '../components/Navigation';
-  import Header from '../components/Header';
-  import Footer from '../components/Footer';
+  import { kebabCase } from 'lodash'
 
   export default {
-    components: { Navigation, Header, Footer },
     computed: {
-      blog() {
-        return {
-          title: this.$page.title,
-          image: this.$page.frontmatter.image,
-        }
-      },
-      header() {
-        return {
-          showCover: false,
-          logo: this.$themeConfig.logo,
-          coverImage: null,
-          title: this.$site.title,
-          description: this.$site.description
-        }
-      },
-        
       datetime () {
-        return new Date(this.$page.frontmatter.date).toISOString()
+        return new Date(this.$frontmatter.publish).toISOString()
       },
 
       localeDate () {
-        return new Date(this.$page.frontmatter.date).toLocaleDateString()
+        return new Date(this.$frontmatter.publish).toLocaleDateString(this.$themeConfig.locale, { timezone: this.$themeConfig.timezone })
       },
 
-      primaryTag () {
-        if (!this.$page.frontmatter.tags || this.$page.frontmatter.tags.length === 0) {
-          return null
+      tags () {
+        if (!this.$frontmatter.tags || this.$frontmatter.tags.length === 0) {
+          return [];
         }
 
-        return this.$page.frontmatter.tags[0];
+        return this.$frontmatter.tags;
       },
 
       backgroundImage () {
         return {
-          'background-image': `url(${this.$withBase(this.blog.image)})`
+          'background-image': `url(${this.$withBase(this.$frontmatter.image.replace('w_auto', 'w_2000'))})`
         }
       }
+    },
+    methods: {
+      kebabCase
     }
   }
 </script>
 
 <style src="prismjs/themes/prism-okaidia.css"></style>
-
-<style lang="scss">
-  @import '../styles/reset';
-  @import '../styles/defaults';
-
-  /* 1. Global - Set up the things
-  /* ---------------------------------------------------------- */
-
-  body {
-    background: #f4f8fb;
-  }
-
-  .img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-position: center center;
-    background-size: cover;
-    border-radius: 100%;
-  }
-
-  .hidden {
-    visibility: hidden;
-    position: absolute;
-    text-indent: -9999px;
-  }
-
-
-  /* 2. Layout - Page building blocks
-  /* ---------------------------------------------------------- */
-
-  .site-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  .site-main {
-    z-index: 100;
-    flex-grow: 1;
-  }
-
-  /* Full width page blocks */
-  .outer {
-    position: relative;
-    padding: 0 4vw;
-  }
-
-  /* Centered content container blocks */
-  .inner {
-    margin: 0 auto;
-    max-width: 1040px;
-    width: 100%;
-  }
-
-  /* 3. Special Template Styles
-  /* ---------------------------------------------------------- */
-  @media (min-width: 900px) {
-    .home-template,
-    .category-template,
-    .tags-template,
-    .posts-template,
-    .author-template {
-      .post-feed {
-        margin-top: -70px;
-        padding-top: 0;
-      }
-
-      .site-nav {
-        position: relative;
-        top: -70px;
-      }
-    }
-
-  }
-
-</style>
+<style lang="styl" src='../styles/code'></style>
 
 <style lang="scss">
   @import '../styles/variables';
@@ -349,7 +251,8 @@
   .post-full-content video {
     display: block;
     margin: 1.5em auto;
-    max-width: 1040px;
+    //max-width: 1040px;
+    max-width: 100%;
   }
   @media (max-width: 1040px) {
     .post-full-content img,
@@ -388,7 +291,6 @@
     text-align: center;
   }
 
-
   .post-full-content iframe {
     margin: 0 auto;
   }
@@ -409,6 +311,10 @@
 
   .post-full-content blockquote p:last-child {
     margin-bottom: 0;
+  }
+
+  .post-full-content div[class*="language-"] {
+    width: 100%;
   }
 
   .post-full-content code {

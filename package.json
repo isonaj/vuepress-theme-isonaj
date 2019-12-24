@@ -1,32 +1,35 @@
 {
-  "name": "vuepress-theme-isonaj",
-  "version": "0.0.21",
-  "description": "",
-  "main": "index.js",
+  "name": "vuepress-theme-casper",
+  "version": "1.1.1",
+  "description": "Ghosts Casper Theme for VuePress",
+  "main": "blog/.vuepress/theme/index.js",
+  "repository": "git@github.com:alexander-heimbuch/vuepress-theme-casper.git",
+  "author": "Alexander Heimbuch <github@heimbu.ch>",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vuepress dev blog",
+    "build": "rm -rf dist/ && vuepress build blog --dest dist/",
+    "bundle:clean": "rm -rf publish && mkdir -p publish",
+    "bundle:copy": "cp -R blog/.vuepress/theme/* publish/ && cp package.json publish/",
+    "bundle": "npm run bundle:clean && npm run bundle:copy",
+    "deploy:gh-pages": "GH_EMAIL=github@heimbu.ch GH_NAME='Alexander Heimbuch' ./scripts/gh-pages.sh dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/isonaj/vuepress-theme-isonaj.git"
-  },
-  "author": "Anthony Ison",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/isonaj/vuepress-theme-isonaj/issues"
-  },
-  "homepage": "https://github.com/isonaj/vuepress-theme-isonaj#readme",
   "dependencies": {
-    "@vuepress/plugin-blog": "^1.2.4",
-    "@vuepress/plugin-nprogress": "^1.0.3",
-    "@vuepress/plugin-search": "^1.0.3",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^7.2.0",
-    "vuepress-plugin-container": "^2.0.2",
-    "vuepress-plugin-disqus": "^0.1.1",
-    "vuepress-plugin-feed": "^0.1.6",
-    "vuepress-plugin-reading-time": "^0.1.1",
-    "vuepress-plugin-sitemap": "^2.1.2"
+    "lodash": "^4.17.10",
+    "node-sass": "^4.9.0",
+    "normalize.css": "^8.0.0",
+    "prismjs": "^1.15.0",
+    "sass-loader": "^7.0.3",
+    "striptags": "^3.1.1",
+    "vuex": "^3.0.1",
+    "vuex-router-sync": "^5.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "vue": "^2.5.16",
+    "vuepress": "^1.0.0-alpha.39"
+  },
+  "peerDependencies": {
+    "vue": "2.5.x",
+    "vuepress": "^1.0.0-alpha.39"
+  }
 }
