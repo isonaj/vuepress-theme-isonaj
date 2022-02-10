@@ -20,7 +20,7 @@
     "@vuepress/plugin-blog": "^1.2.4",
     "@vuepress/plugin-nprogress": "^1.0.3",
     "@vuepress/plugin-search": "^1.0.3",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^7.2.0",
     "vuepress-plugin-container": "^2.0.2",
     "vuepress-plugin-disqus": "^0.1.1",
